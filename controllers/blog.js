@@ -37,9 +37,9 @@ module.exports.postBlog = async (req, res) => {
 
 module.exports.deleteBlog = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const id = req.params.id;
     const deleteblog = await Blog.remove({ _id: id });
-    res.status(200).json(deleteblog);
+    res.status(200).json({ id });
   } catch (error) {
     res.status(404).json(error);
   }
@@ -47,7 +47,7 @@ module.exports.deleteBlog = async (req, res) => {
 
 module.exports.getOneBlog = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const id = req.params.id;
     const blog = await Blog.findById(id);
     res.status(200).json(blog);
   } catch (error) {

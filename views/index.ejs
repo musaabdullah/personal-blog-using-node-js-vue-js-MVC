@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-       
+       <title class="title"></title>
         <%- include('./partials/comm_css') %>
     </head>
     <body>
@@ -9,27 +9,72 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9" id="app">
-                    <div v-for="blog in blogs" v-bind:key="blog.id">
-                        <%- include('./components/blogs') %>
-                    </div>
-                </div>
+                   
+                        <div v-if="blogValue">
+                            <span v-if="leading">Leading...</span>
+                           
+                                <div v-for="(blog,index) in blogs" v-bind:key="blog.id">
+                                    <%- include('./components/blogs') %>
+                                </div>   
+                            
+                        </div>
+                        <div v-else >
+                                <%- include('./components/details') %>
+                        </div>
+                        <%- include('./components/blogform') %>
+                    
+               </div>
             </dvi>
         </div>
 
         <%- include('./partials/comm_js') %>
         <script>
+        const title = document.querySelector('.title');
             var vm = new Vue({
                 el:"#app",
                 data:{
+                    leading:false,
+                    lead:false,
+                    blogValue:true,
                     blogs:[],
+                    blogPost:'',
                 },
                 mounted: function(){
+                    this.leading = true;
+                    this.lead = false;
                     axios.get('/blogs')
                     .then(res => {
                         this.blogs = res.data;
+                        this.leading = false;
+                        this.lead = true;
+                       // title.innerHTML = 'index page';
                     })
                     .catch(error => console.log(error))
+                },
+                methods:{
+                
+                   async getOnePost (id){
+
+                     try{
+                         const res = await axios.get(`/blogs/${id}`);
+                         this.blogPost = res.data;
+                        // title.innerHTML = this.blogPost.title;
+                         this.blogValue = false;
+                     } catch (error) {
+                         console.log(error)
+                     }
+                   },
+                    async deleteOnePost(id,index){
+                    try {
+                        const res = await axios.delete(`/blogs/${id}`);
+                        console.log(res.id);
+                        this.blogs.splice(index,1);
+                    } catch (error) {
+                        console.log(error);
+                    }
                 }
+                },
+               
             })
         </script>
     </body>

@@ -6,8 +6,8 @@ const router = Router();
 router.post('/', blog.postBlog);
 router.get('/', blog.getAllBlogs);
 // router.put('/:id');
-router.delete('/:id', blog.getOneBlog);
-router.get('/:id', blog.deleteBlog);
+router.delete('/:id', blog.deleteBlog);
+router.get('/:id', blog.getOneBlog);
 
 router.get('/details', (req, res) => {
   res.render('details');
