@@ -2,6 +2,6 @@
     <div class="card-body">
         <h2>{{ blog.title }}</h2>
         <p>{{ blog.content.slice(0,200) }}</p>
-        <a href="#" class="btn btn-primary">Read more</a>
+        <a :href="/blogDetail/+blog._id" class="btn btn-primary">Read more</a>
     </div>
 </div>
