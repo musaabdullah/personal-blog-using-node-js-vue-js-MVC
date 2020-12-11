@@ -13,7 +13,8 @@ const PORT = process.env.PORT || 3000;
 app.use(morgan('dev'));
 app.use(cors());
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use('js', express.static('public/javascript'));
+app.use('css', express.static('public/style'));
 
 app.use('/profile', express.static('upload/images'));
 app.use(express.json());
@@ -27,6 +28,11 @@ mongoose.connect('mongodb://localhost:27017/blog', {
   .then((res) => { console.log(`connected successfuly ${res}`); })
   .catch((err) => { console.log(err); });
 app.use('/blogs', blogRoute);
+
+app.get('/index', (req, res) => {
+  res.render('index');
+});
+
 app.listen(PORT, () => {
   console.log(`listening to port ${PORT}`);
 });
