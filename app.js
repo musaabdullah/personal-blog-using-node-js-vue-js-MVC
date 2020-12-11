@@ -30,7 +30,11 @@ mongoose.connect('mongodb://localhost:27017/blog', {
 app.use('/blogs', blogRoute);
 
 app.get('/index', (req, res) => {
-  res.render('index');
+  res.render('index', { title: 'index page' });
+});
+
+app.get('/', (req, res) => {
+  res.redirect('/index');
 });
 
 app.listen(PORT, () => {

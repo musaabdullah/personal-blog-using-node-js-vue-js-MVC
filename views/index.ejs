@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-
-        </title>
+       
         <%- include('./partials/comm_css') %>
     </head>
     <body>
 
         <div class="container">
-            Hello world
+            <div class="row">
+                <div class="col-md-9" id="app">
+                    <div v-for="blog in blogs" v-bind:key="blog.id">
+                        <%- include('./components/blogs') %>
+                    </div>
+                </div>
+            </dvi>
         </div>
 
         <%- include('./partials/comm_js') %>
+        <script>
+            var vm = new Vue({
+                el:"#app",
+                data:{
+                    blogs:[],
+                },
+                mounted: function(){
+                    axios.get('/blogs')
+                    .then(res => {
+                        this.blogs = res.data;
+                    })
+                    .catch(error => console.log(error))
+                }
+            })
+        </script>
     </body>
 </html>
