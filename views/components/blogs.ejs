@@ -4,6 +4,7 @@
         <p>{{ blog.content.slice(0,200) }}</p>
         <button @click="getOnePost(blog._id)" class="btn btn-primary">Read more</button>
         <button @click="deleteOnePost(blog._id,index)" class="btn btn-danger">Delete</button>
-        <button @click="updatePost(blog._id)" class="btn text-white" style="background-color:darkorange">Update</button>
+        <button @click="showFormPost(blog._id)" class="btn text-white" style="background-color:darkorange">Update</button>
+        
     </div>
 </div>

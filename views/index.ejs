@@ -41,6 +41,8 @@
                     blogdetail:false,
                     blogForm:false,
                     blogs:[],
+                    postButton: true,
+                    updateButton: false,
                     blogPost:'',
                     post:{
                         title: '',
@@ -96,6 +98,7 @@
                     this.blogForm = false;
                     this.blogValue = true;
                     this.blogdetail = false;
+                    
                 },
                 async addPost(){
                     try {
@@ -113,14 +116,34 @@
                     console.log(error);
                 }
                 },
-                async updatePost(id) {
+                async showFormPost(id) {
                     try {
                     const res = await axios.get('/blogs/'+id);
                     this.post = res.data.blog;
-                    console.log(this.post);
-                    
+                    this.showBlogForm();
+                    this.postButton= false;
+                    this.updateButton = true;
                     } catch (error) {
                         console.log(error);
+                    }
+                },
+                async updatePost(id) {
+                    try {
+                        const res = await fetch('/blogs/'+id,{
+                            method: 'PUT',
+                            body:JSON.stringify({
+                                id: this.post._id,
+                                title: this.post.title,
+                                content: this.post.content,
+                            }),
+                            headers: {'Content-Type':'application/json'}
+                        });
+
+                        const id = await res.json();
+                        consoel.log(id);
+
+                    } catch (error) {
+                        console.long(error);
                     }
                 }
                 },
