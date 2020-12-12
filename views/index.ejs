@@ -112,6 +112,16 @@
                 } catch (error) {
                     console.log(error);
                 }
+                },
+                async updatePost(id) {
+                    try {
+                    const res = await axios.get('/blogs/'+id);
+                    this.post = res.data.blog;
+                    console.log(this.post);
+                    
+                    } catch (error) {
+                        console.log(error);
+                    }
                 }
                 },
                

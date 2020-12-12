@@ -49,7 +49,7 @@ module.exports.getOneBlog = async (req, res) => {
   try {
     const id = req.params.id;
     const blog = await Blog.findById(id);
-    res.status(200).json(blog);
+    res.status(200).json({ blog });
   } catch (error) {
     json.status(400).json(error);
   }
