@@ -54,3 +54,22 @@ module.exports.getOneBlog = async (req, res) => {
     json.status(400).json(error);
   }
 };
+
+// module.exports.blog_put = async(req,res)=>{
+//   try{
+//       const blog = {
+//           Id : req.body.blogId,
+//           title:req.body.title,
+//           content:req.body.content,
+//       }
+//           const blogUpdate = await Blog.updateOne(
+//               {_id:blog.Id},
+//               {$set: { title:blog.title,
+//               categoryDescription:category.description,
+//               }}
+//           );
+//           res.status(200).json({id:category.Id});
+//   }catch(error){
+//       res.status(404).json(error)
+//   }
+// }
