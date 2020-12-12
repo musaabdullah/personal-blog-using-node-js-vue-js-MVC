@@ -41,8 +41,6 @@
                     blogdetail:false,
                     blogForm:false,
                     blogs:[],
-                    postButton: true,
-                    updateButton: false,
                     blogPost:'',
                     post:{
                         title: '',
@@ -121,8 +119,7 @@
                     const res = await axios.get('/blogs/'+id);
                     this.post = res.data.blog;
                     this.showBlogForm();
-                    this.postButton= false;
-                    this.updateButton = true;
+                   
                     } catch (error) {
                         console.log(error);
                     }

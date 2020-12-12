@@ -3,10 +3,6 @@
     <div class="card-body">
     <form>
         <div class="form-group">
-            <label for="id">Id:</label>
-            <input number="text" disabled class="form-control" id="id" v-model="post._id">
-        </div>
-        <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" v-model="post.title" placeholder="Enter blog title">
         </div>
@@ -15,8 +11,7 @@
             <textarea type="text" class="form-control" id="content" v-model="post.content" placeholder="Enter blog content"> </textarea>
         </div>
         <div class="container text-center mt-2">
-        <button v-if="postButton" @click="addPost"class="btn btn-primary mr-2">Save</button>
-        <button v-if="updateButton" @click.prevent="updatePost(post._id)" class="btn btn-success mr-2">update</button>
+        <button @click.prevent="addPost"class="btn btn-primary mr-2">Save</button>
         <button class="btn btn-danger">Reset</button>
         </div>
     </form>
